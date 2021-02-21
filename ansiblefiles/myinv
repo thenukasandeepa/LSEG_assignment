@@ -1,0 +1,6 @@
+[dev]
+<Ip address of worker machine in dev>
+
+
+[prod]
+<Ip address of worker machine in prod>

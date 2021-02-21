@@ -1,0 +1,37 @@
+---
+- name: insall apache
+  hosts:  prod
+  remote_user:  pub-server
+  become: yes
+  tasks:
+    - name: install apache
+      yum:
+        name: httpd
+        state:  latest
+
+    - name: start apache
+      service:
+        name: httpd
+        state:  started
+        enabled: yes
+
+    - name: change index file
+      copy:
+        src:  ./index.html
+        dest: /var/www/html
+    
+    - name: install mysql
+      yum:
+        name: mysql
+        state: latest
+
+    - name: create a log directory
+      file:
+        path: $user/logs
+        state:  directory
+        mode: "u=rw,g=rw,o=rw"
+
+    - name: install unzip 
+      yum:
+        name: unzip
+        state: latest

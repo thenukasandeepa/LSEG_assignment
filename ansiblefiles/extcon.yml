@@ -1,0 +1,20 @@
+---
+- name: insall apache
+  hosts:  dev
+  remote_user:  ext-server
+  become: yes
+  tasks:
+    - name: copy script1 to the external server
+      copy:
+        src:  ./scriptname.sh
+        dest: $home
+
+    - name: copy script2 to the external server
+      copy:
+        src:  ./scriptname2.sh
+        dest: $home
+
+    - name: install unzip 
+      yum:
+        name: unzip
+        state: latest
